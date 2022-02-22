@@ -20,21 +20,31 @@ fetchOneProduct
 
     for (i in one.colors) {
       let sofa = document.createElement("option");
-      sofa.text = one.colors[i];
+      sofa.text = ("value", one.colors[i]);
       colors.add(sofa);
     }
-
-    /* let dropDown = document.getElementById("colors");
-    dropDown.lenght = 0;
-
-    for (i in one.colors) {
-      let sofa = document.createElement("option");
-      sofa.text = one.colors[i];
-      dropDown.add(sofa);
-    } */
-
-    /*let imgContainer = document.getElementsByClassName("item__img")[0];
-    imgContainer.getElementsByTagName("img");
-
-    /*`${one.imageUrl}`;*/
   });
+
+function Item() {
+  order = {
+    id: ID,
+    qty: document.getElementById("quantity").value,
+    color: document.getElementById("colors").value,
+  };
+
+  let cart = [];
+
+  if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart"));
+  }
+  cart.push(order);
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+document.getElementById("addToCart").addEventListener(
+  "click",
+  function () {
+    Item();
+  },
+  false
+);
