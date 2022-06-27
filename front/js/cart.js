@@ -2,6 +2,8 @@ const cart = createCart();
 showItemsinCart();
 order();
 
+//Function to create empty cart
+
 function createCart() {
   const cart = [];
   for (let i = 0; i < localStorage.length; i++) {
@@ -11,6 +13,8 @@ function createCart() {
   }
   return cart;
 }
+
+//function to show items in cart
 
 function showItemsinCart() {
   const cartItems = document.getElementById("cart__items");
@@ -24,6 +28,8 @@ function showItemsinCart() {
   }
   total(cart);
 }
+
+//Function to create item
 
 function createItem(sofa) {
   const item = document.createElement("item");
@@ -55,6 +61,8 @@ function createItem(sofa) {
   return item;
 }
 
+//Function to add safas and get total
+
 function total(sofa) {
   let numberOfSofas = 0;
   let totalPriceSofas = 0;
@@ -83,11 +91,15 @@ function totalListener(item, sofa) {
   });
 }
 
-function deleteButton(item) {
-  const deleteButton = item.querySelector(".deleteItem");
+//Function to delete sofa from cart
+
+function deleteButton(article) {
+  const deleteButton = article.querySelector(".deleteItem");
   deleteButton.addEventListener("click", () => {
+    //Removes from local storage
     const key = article.dataset.id + ":" + article.dataset.color;
     window.localStorage.removeItem(key);
+    // Reload page to get items from localStorage again
     window.location.reload();
   });
 }
@@ -99,6 +111,8 @@ const contact = {
   city: document.getElementById("city"),
   email: document.getElementById("email"),
 };
+
+//Function to submit form
 
 function sendForm() {
   const firstName = document.getElementById("firstName");
@@ -137,6 +151,8 @@ function checkInput(name, reg, err, text) {
     err.innerHTML = " ";
   }
 }
+
+//Order buttom
 
 function order() {
   document.getElementById("order").addEventListener("click", (event) => {
